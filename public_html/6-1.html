@@ -35,20 +35,50 @@ File Description: Bootstrap webpage assesments for week 6 -->
     <p>Records have been kept for <em>Dkin Pizzas</em> throughout <em>2020</em>.</p>
     <p>Below is a list of the total number of pizzas sold in each months over the year 2020 (from January to December).
     </p>
-
-    <!-- JS array data -->
+    <p id="display"></p>
 
 
     <h2>Pizza Sales Analysis</h2>
     <p>From this data some simple analysis has been undertaken. The results of the year's sales analysis including the
       total number of pizzas sold, the average number of pizzas sold each month, and the maximum/mimimum of pizzas sold
       in a month; is shown below:</p>
-
-
-
-
+    <p>The TOTAL number of pizzas sold over the year: <b id="total"></b></p>
+    <p>The AVERAGE number of pizzas sold per month: <b id="average"></b></p>
+    <p>The MIMIMUM number of pizzas sold in a month: <b id="min"></b></p>
+    <p>The MAXIMUM number of pizzas sold in a month: <b id="max"></b></p>
 
   </div>
+  
+  <script>
+    // Variables declaration
+    var sales, outputText, fLength, i, total, average, minimum, maximum;
+
+    // JS array data and variable initialisation
+    sales = [3651, 4380, 5520, 6657, 8779, 11197, 13669, 14445, 13423, 11104, 8259, 5568];
+    fLength = sales.length;
+    outputText = "<ul>";
+    total = 0, average = 0, minimum = sales[0], maximum = sales[0];
+
+    // itterate through each element
+    for (i = 0; i < fLength; i++) {
+      outputText += "<li>" + sales[i] + "</li>";
+      total += sales[i];
+    }
+    outputText += "</ul>";
+
+    // perform the calculations required
+    average = (total / fLength).toFixed(2);
+    minimum = Math.min.apply(Math, sales);
+    maximum = Math.max.apply(null, sales);
+
+    // output all the calculations
+    document.getElementById("display").innerHTML = outputText;
+    document.getElementById("total").innerHTML = total;
+    document.getElementById("average").innerHTML = average;
+    document.getElementById("min").innerHTML = minimum;
+    document.getElementById("max").innerHTML = maximum;
+  </script>
+
 </body>
 
 </html>
