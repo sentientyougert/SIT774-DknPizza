@@ -24,6 +24,31 @@ File Description: Bootstrap webpage assesments for week 6 -->
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 
+  <!-- JavaScript Functions used in HTML program -->
+  <script>
+    // Determine if a number is prime by 
+    function isPrime(p) {
+      // If the number is 1 it is not prime
+      if (p === 1) {
+        return false;
+      }
+      // If the number is two then it is prime
+      else if (p === 2) {
+        return true;
+      } else {
+        for (var x = 2; x < p; x++) {
+          // Determine if p is divisable by any numbers counting from two up
+          if (p % x === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+  </script>
+
+
+
   <title>Task 6.2P</title>
 
 </head>
@@ -32,53 +57,51 @@ File Description: Bootstrap webpage assesments for week 6 -->
   <div class="container">
     <h2>JavaScript Loops and Functions</h2>
     <h3>Dynamic Table Highlighting Prime Numbers</h3>
-    <p>Below is a table that was created dynamically, showing the sequence of numbers from <b>1</b> to <strong><span id="maxNumber"></span></strong> with
+    <p>Below is a table that was created dynamically, showing the sequence of numbers from <b>1</b> to <strong><span
+          id="maxNumber"></span></strong> with
       all of the <em>Prime Numbers</em> highlighted blue (on in Bootstrap terms using the class <em
         class="danger">class="bg-primary text-white"</em>).</p>
-    <!-- <p id="display"></p> generate pop up to determine how many numbers to display in the array -->
+    <!-- Generate pop up to determine how many numbers to display in the array -->
     <p id="primeTable"></p>
 
+    <!-- Javascript used for generating the table -->
+    <script type="text/javascript">
+      // Declare the variables used in the program
+      var maximum = 201, i, j, count;
 
-    
+      maximum = window.prompt("Please enter a maximum number less than 200");
+      while (maximum > 200) {
+        // Prompt the user to enter in a maximum number
+        if (maximum > 200) {
+          maximum = window.prompt("Maximum limit exceeded! Please enter a maximum number less than 200")
+        }
+      }
+      // Assign the maximum number to a HTML element
+      document.getElementById("maxNumber").innerHTML = maximum;
+      // Initialise the variables
+      count = 0
+      // Create a bordered table
+      document.write("<table class='table table-bordered'>");
+      // Create a column
+      for (i = 0; i < maximum + 1 / 10; i++) {
+        document.write("<tr>");
+        for (j = 0; j < 10 & count <= maximum; j++) {
+          // If the count is prime make the cell blue with white text
+          if (isPrime(count)) {
+            document.write("<td class='text-center bg-primary text-white'>")
+            // Otherwise print the cell with white background and black text
+          } else {
+            document.write("<td class='text-center'>")
+          }
+          // write the count value within the table cell and then increment it
+          document.write(count)
+          document.write("</td>");
+          count += 1;
+        }
+      }
+      document.write("</tr>");
+      document.write("</table>");
+    </script>
   </div>
-
-  <script type="text/javascript">
-    var maximum;
-    maximum = window.prompt ("Please enter a maximum number");
-    document.getElementById("maxNumber").innerHTML = maximum;
-
-    
-
-
-    // Variables declaration
-    var sales, outputText, fLength, i, total, average, minimum, maximum;
-
-    // JS array data and variable initialisation
-    sales = [3651, 4380, 5520, 6657, 8779, 11197, 13669, 14445, 13423, 11104, 8259, 5568];
-    fLength = sales.length;
-    outputText = "<ul>";
-    total = 0, average = 0, minimum = sales[0], maximum = sales[0];
-
-    // itterate through each element
-    for (i = 0; i < fLength; i++) {
-      outputText += "<li>" + sales[i] + "</li>";
-      total += sales[i];
-    }
-    outputText += "</ul>";
-
-    // perform the calculations required
-    average = (total / fLength).toFixed(2);
-    minimum = Math.min.apply(Math, sales);
-    maximum = Math.max.apply(null, sales);
-
-    // output all the calculations
-    document.getElementById("display").innerHTML = outputText;
-    document.getElementById("total").innerHTML = total;
-    document.getElementById("average").innerHTML = average;
-    document.getElementById("min").innerHTML = minimum;
-    document.getElementById("max").innerHTML = maximum;
-  </script>
-
 </body>
-
 </html>
