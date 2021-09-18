@@ -67,14 +67,13 @@ File Description: Bootstrap webpage assesments for week 6 -->
     <!-- Javascript used for generating the table -->
     <script type="text/javascript">
       // Declare the variables used in the program
-      var maximum = 201, i, j, count;
+      var maximum, i, j, count;
 
+      // Prompt the user to enter in a maximum number
       maximum = window.prompt("Please enter a maximum number less than 200");
-      while (maximum > 200) {
-        // Prompt the user to enter in a maximum number
-        if (maximum > 200) {
-          maximum = window.prompt("Maximum limit exceeded! Please enter a maximum number less than 200")
-        }
+      if (maximum > 200) {
+          maximum = window.confirm("Maximum limit exceeded! Default set to 200")
+          maximum = 200;
       }
       // Assign the maximum number to a HTML element
       document.getElementById("maxNumber").innerHTML = maximum;
