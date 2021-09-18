@@ -61,15 +61,16 @@ File Description: Bootstrap webpage assesments for week 6 -->
         // bg-info text-white bg-warning text-white
         for (i = 0; i < storeData.length; i++) {
           row = `
-         <tr>
-           <td class='text-center'>${storeData[i].city}</td>
-           <td class='text-center'>${storeData[i].postcode}</td>
-           <td class='text-center'>${findState(storeData[i].postcode)}</td>
-           <td class='text-center'>${storeData[i].manager}</td>
-           <td class='text-center'>${storeData[i].sales}</td>
-           <td class='text-center'>${findBonus(storeData[i].sales)}</td>
+            <td class='text-center'>${storeData[i].city}</td>
+            <td class='text-center'>${storeData[i].postcode}</td>
+            <td class='text-center'>${findState(storeData[i].postcode)}</td>
+            <td class='text-center'>${storeData[i].manager}</td>
+            <td class='text-center'>${storeData[i].sales}</td>
+            <td class='text-center'>${findBonus(storeData[i].sales)}</td>
           </tr>`;
-          table.innerHTML += row;
+
+
+          table.innerHTML += formatBonus(storeData[i].sales) + row;
         }
       }
 
@@ -105,10 +106,20 @@ File Description: Bootstrap webpage assesments for week 6 -->
         }
       }
 
+      function formatBonus(sales) {
+        if (findBonus(storeData[i].sales) == "Level 1") {
+            return `<tr class='text-center bg-info text-white'>`;
+          } else if (findBonus(storeData[i].sales) == "Level 2") {
+            return `<tr class='text-center bg-warning text-white'>`;
+          } else if (findBonus(storeData[i].sales) == ""){
+            return `<tr>`;
+          }
+      }
+
       // Program
       // Generate the sales table
       buildTable(storeData, "salesTable")
-      
+
       //document.write(findState(6149))
     </script>
 
